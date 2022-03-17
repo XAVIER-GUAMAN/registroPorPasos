@@ -1,0 +1,53 @@
+<!DOCTYPE html> 
+<html>
+<head>
+    <title>Resumen Datos Introducidos</title>
+    <link rel="stylesheet" href="data:,">
+</head>
+<body>
+
+<div th:replace= "navegacion:: header">
+</div>
+
+    <form th:action="@{/acceso/resumen}" th:object="${usuario}" method="POST" >
+    
+    <h1>Resumen de datos Introducidos</h1>
+    <fieldset>
+    <legend>Datos Personales</legend>
+    	Nombre:
+    	<input type="text" th:field="*{nombre}"/> </br>
+    	
+    	Apellidos:
+    	<input type="text" th:field="*{apellido}"/> </br>
+    	
+    	Fecha de nacimiento:
+    	<input type="text" th:field="*{fechaNacimiento}"/> </br>
+    	 	
+    	Nacionalidades:
+    	<input type="text" th:field="*{nacionalidad}"/> </br> 
+    </fieldset>
+    
+    <fieldset>
+    <legend>Datos profesionales </legend>
+    	Departamento:
+    	<input type="text" th:field="*{departamento}"/> </br>
+    	
+    	Salario:
+    	<input type="text" th:field="*{salario}"/> </br>
+    	
+    	Comentarios:
+    	<input type="text" th:field="*{comentarios}"/> </br>
+    </fieldset>
+    
+    <fieldset>
+    <legend>Datos bancarios </legend>
+    	Cuenta corriente:
+    	<input type="text" th:field="*{numeroCuenta}"/> </br>
+    </fieldset>
+    
+    </br>
+    <input type="submit" value ="volver inicio" />
+    
+    </form>
+</body>
+</html>

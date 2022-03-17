@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+</head>
+
+<body>
+<div th:replace= "navegacion:: header">
+</div>
+
+	<form th:action="@{/acceso/paso1}" method="POST" th:object="${usuario}">
+	<fieldset>
+	<legend>Datos personales</legend>	
+<!--Campo Nombre -->
+	<label for="nombre">
+		<span class="negrita"> Nombre </span>
+		<input type="text" name="nombre" id="nombre" th:field="*{nombre}"/>
+	</label>
+
+<!--Campo Apellido -->
+	<label for="Apellido">
+		<span class="negrita"> Apellido </span>
+		<input type="text" name="apellido" id="apellido" th:field="*{apellido}"/>			
+	</label>
+	</br>
+
+<!--Campo Fecha Nacimiento -->
+	<label for="FchaNacimiento">
+		<span class="negrita"> Fecha Nacimiento </span>
+		<input type="text" name="fechaNacimiento" id="fechaNacimiento" th:field="*{fechaNacimiento}"/>	
+	</label>
+	</br>
+
+<!--Campo Genero  -->
+	<label for="Genero">
+		<span class="negrita"> Género: </span>
+<!-- Repintar campo Seleccionado-->	
+		<th:block th:each="genero: ${listaGenerosOrdenada}">
+		<span th:text="${genero.value}"/>  <!-- Para repintar el texto  -->
+	 	<input type="radio" name="siglasGenero" th:id="${genero.value}" th:value="${genero.key}" th:checked="${genero.key == usuario.siglasGenero}"/> <!-- Para repintar el radio-->
+		
+		</th:block>	
+	</label>
+	</br>
+	
+<!--Campo Estado Civil -->
+	<label for="EstadoCivil">
+		<span class="negrita"> Estado Civil: </span>
+<!-- Repintado de campo-->			
+	<th:block th:each="estado: ${listaEstadoCivil}">
+	<span th:text="${estado.value}"/>
+	   <input type="checkbox" name="estadoCivil"
+	    th:value="${estado.key}" 
+	    th:checked="${usuario.estadoCivil != null} and ${#lists.contains(usuario.estadoCivil, estado.key)}"/>
+	
+	</th:block>	
+	</label>
+	</br>
+	
+<!--Campo Nacionalidades -->
+	<label for="Nacionalidades">
+		<span class="negrita">Nacionalidades</span>
+		<select name="nacionalidad" id="nacionalidad" size="4" multiple="multiple">
+<!-- Repintado de campo-->			  	
+			<th:block th:each="nac: ${listaNacionalidades}">
+			<option th:value="${nac.key}" 
+			th:selected="${usuario.nacionalidad != null} and ${#lists.contains(usuario.nacionalidad, nac.key)}"/>
+			<span th:text="${nac.value}"/>
+			</th:block>			  	  
+		</select>
+	</label>
+	</br>
+		
+<!-- Boton -->
+	<input type="submit" value="Grabar datos e ir al paso 2 -Datos Profesionales" />
+		
+	</fieldset>				
+
+	</form>
+</body>
+</html>

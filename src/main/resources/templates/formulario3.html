@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+</head>
+
+<body>
+<div th:replace= "navegacion:: header">
+</div>
+
+	<form th:action="@{/acceso/paso3}" th:object="${usuario}" method="POST">
+	<fieldset>
+	<legend>Datos Bancarios</legend>
+		<label for ="datosProfesionales">
+		<span class="negrita">Cuenta corriente </span>
+		<input type="number" th:field="*{numeroCuenta}"/>
+		</br>
+		
+		<input type="submit" value ="Grabar información y pasar al siguiente paso"/>
+		</label>
+	</fieldset>
+	</form>
+</body>
+</html>

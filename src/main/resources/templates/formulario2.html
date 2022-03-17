@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+</head>
+
+<body>
+<div th:replace= "navegacion:: header">
+</div>
+
+
+	<form th:action="@{/acceso/paso2}" th:object="${usuario}" method="POST">
+	<fieldset>
+	<legend>Datos Profesionales</legend>
+		<label for ="datosProfesionales">
+		<span class="negrita">Departamento </span>
+		<select name="departamento">
+			<th:block th:each="depar : ${listaDepartamentos}">
+				<option th:value"${depar.key}" th:selected="${depar.key==usuario.departamento}"/>
+				<span th:text="${depar.value}"/>
+			</th:block>
+		</select>
+		</label>
+		</br>
+		
+		<label for="salario">
+			<span class="negrita">Salario </span>
+			<input type="number" th:field="*{salario}"/>
+		</label>
+		</br>
+		
+		<label for="Comentarios">
+			<span class="negrita">Comentarios </span>
+			<textarea name="comentarios" id="comentarios" cols="30" rows="4" th:field="*{comentarios}"> </textarea>
+		</label> 
+		</br>
+		
+		<input type="submit" value ="Grabar información y pasar al siguiente paso" />
+	
+	</fieldset>
+	
+	
+
+	</form>
+</body>
+</html>
